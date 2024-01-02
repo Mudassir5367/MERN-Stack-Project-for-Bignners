@@ -1,8 +1,17 @@
-const express = require('express')
+const express = require('express');
+const { Db } = require('mongodb');
+const mongoose = require('mongoose')
 const app = express();
 const port = 5000;
 
 
+// db connection
+const DB = 'mongodb+srv://mudassirhussain:mern-project-2@cluster0.epcsdj1.mongodb.net/mern-project-thapa?retryWrites=true&w=majority'
+mongoose.connect(DB).then(()=>{
+    console.log('Connected');
+}).catch((error)=>{
+    console.log(error,'not connected');
+})
 // middleware
 
 const middleware = (req, res, next)=>{
@@ -17,8 +26,7 @@ app.get('/', (req, res)=>{
 
 app.get('/about', middleware,(req, res)=>{
     console.log('Hello my About ');
-    res.send('Hellow from About Page')
-})
+ })
 
 app.get('/contact', (req, res)=>{
     res.send('Hellow from Contact Page')
