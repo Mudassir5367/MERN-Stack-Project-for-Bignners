@@ -1,22 +1,19 @@
+// const dotenv = require('dotenv')
 const express = require('express');
-const { Db } = require('mongodb');
-const mongoose = require('mongoose')
 const app = express();
+require('./db/connection')
+const User = require('./model/userSchema')
+
+// const port = process.env.PORT || 5000;
+// dotenv.config({ path: './config.env' });
 const port = 5000;
 
 
-// db connection
-const DB = 'mongodb+srv://mudassirhussain:mern-project-2@cluster0.epcsdj1.mongodb.net/mern-project-thapa?retryWrites=true&w=majority'
-mongoose.connect(DB).then(()=>{
-    console.log('Connected');
-}).catch((error)=>{
-    console.log(error,'not connected');
-})
 // middleware
 
 const middleware = (req, res, next)=>{
 console.log('Hello my middleware');
-next()
+next();
 }
 // middleware()
 
