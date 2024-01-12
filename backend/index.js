@@ -10,6 +10,8 @@ const port = 5000;
 
 
 // middleware
+app.use(express.json())
+app.use(require('./routes/auth'))
 
 const middleware = (req, res, next)=>{
 console.log('Hello my middleware');
