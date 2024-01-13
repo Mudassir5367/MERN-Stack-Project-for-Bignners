@@ -31,9 +31,9 @@ app.get('/contact', (req, res)=>{
     res.send('Hellow from Contact Page')
 })
 
-app.get('/signin', (req, res)=>{
-    res.send('Hellow from Login Page')
-})
+// app.get('/signin', (req, res)=>{
+//     res.send('Hellow from Login Page')
+// })
 
 app.get('/signup', (req, res)=>{
     res.send('Hellow from Signup Page')

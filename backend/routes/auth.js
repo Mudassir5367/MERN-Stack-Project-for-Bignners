@@ -7,30 +7,48 @@ router.get('/', (req, res)=>{
     res.send('Hellow')
 })
 
-router.post('/register', (req, res)=>{
+router.post('/register', async(req, res)=>{
     // console.log(req.body);
     // res.json({msg:req.body})
-    const {name, email, phone, work, password, cpassword} = req.body;
-    console.log(name);
-    if(!name || !email || !phone || !work || !password || !cpassword){
-        res.json({error:'Please filled the field'})
-    }
+   const {name, email, phone, work, password, cpassword} = req.body;
+   console.log(name);
+   if(!name || !email || !phone || !work || !password || !cpassword ){
+    res.json({error:'plz filled the field'})
+   }
 
-    User.findOne({email:email})
-    .then((userExist)=>{
-        if(userExist){
-            res.json({error:'Please filled the field'})
-        }
+   try {
+    const existUser = await User.findOne({email:email})
+     if(existUser){
+     res.json({error:'user already exist'})
+     }
+     else if (!existUser){
+        const user =  new User({name, email, phone, work, password, cpassword})
+        await user.save()
+            res.json({msg:'user data added in database'})
+     }
+     
+   } catch (error) {
+    console.log(error);
+   }
+  
 
-        const user = new User({name, email, phone, work, password, cpassword})
-        user.save().then(()=>{
-            res.json({msg:'users registered'})
-        }).catch((error)=>{
-            res.json({error:'failed to registered'})
-        })
-    }).catch((err)=>{
-        console.log(err);
-    })
 })
 
+
+router.post('/signin', async(req, res)=>{
+    // console.log(req.body);
+    // res.json({msg:'login success'})
+    const {email, password} = req.body;
+
+    if(!email || !password){
+        res.json({error:'please filld the data'})
+    }
+    const userEmail = await User.findOne({email:email})
+    console.log('userEmail :',userEmail);
+    if(userEmail){
+        res.json({msg:'signin'})
+    }else{
+        res.json({error:'user not login'})
+    }
+})
 module.exports = router;
