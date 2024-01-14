@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcrypt')
 require('../db/connection')
 const User = require('../model/userSchema')
 
@@ -20,6 +21,8 @@ router.post('/register', async(req, res)=>{
     const existUser = await User.findOne({email:email})
      if(existUser){
      res.json({error:'user already exist'})
+     }else if(password !== cpassword){
+        res.json({error:'password are not matching'})
      }
      else if (!existUser){
         const user =  new User({name, email, phone, work, password, cpassword})
@@ -43,12 +46,17 @@ router.post('/signin', async(req, res)=>{
     if(!email || !password){
         res.json({error:'please filld the data'})
     }
-    const userEmail = await User.findOne({email:email})
-    console.log('userEmail :',userEmail);
-    if(userEmail){
-        res.json({msg:'signin'})
+    const loginUser = await User.findOne({email:email})
+    console.log('loginUser :',loginUser);
+    if(loginUser){
+        const isMatch = await bcrypt.compare(password, loginUser.password)
+        if(isMatch){
+            res.json({msg:'signin successful'})            
+        }else{
+            res.json({error:'Invalid Credentials'})
+        }
     }else{
-        res.json({error:'user not login'})
+        res.json({error:'Invalid Credentials'})
     }
 })
 module.exports = router;
