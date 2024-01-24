@@ -17,7 +17,6 @@ function App() {
   return (
     <Router>
     <Navbar/>
-     <>
       <div>
         <Routes>
           <Route path='/' element = {<div>Home</div>}/> 
@@ -27,8 +26,6 @@ function App() {
           <Route path='/signup' element = {<Signup/>}/>
         </Routes>
       </div>
-     </>
-
     </Router>
   );
 }

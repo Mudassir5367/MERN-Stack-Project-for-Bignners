@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,56 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+      /* css */
+.signUp-h{
+  text-align: center;
+  color: indigo;
+}      
+.signUpInputs{
+  width: 500px;
+  margin: auto;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.05); */
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.inputSignUp{
+  width: 90%;
+  font-size: 18px;
+  margin: 20px;
+
+}
+.inputSignUp input{
+  border: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #dadada;
+}
+.signUpBtn{
+  background-color: indigo;
+  color: gold;
+  border: none;
+  padding: 8px;
+  width: 35%;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.signUpLink{
+  margin: 10%;
+  /* text-decoration: none; */
+  color: indigo;
+}
+    /* signIn */
+.signInInputs{
+  margin-top: 60px;
+  min-height: 300px;
+}    
+.signInLink{
+  margin: 15%;
+  color: indigo;
 }
