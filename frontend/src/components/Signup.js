@@ -22,7 +22,7 @@ const Signup = () => {
           <input type='password' name='password' placeholder='Enter Password'/>
         </div>
         <div className='inputSignUp'>
-          <input type='password' name='cpassword' placeholder='Enter Password'/>
+          <input type='password' name='cpassword' placeholder='Enter Confirm Password'/>
         </div>
         <div className='inputSignUp'>
           <button className='signUpBtn'>Register</button>
