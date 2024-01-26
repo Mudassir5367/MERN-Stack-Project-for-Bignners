@@ -1,6 +1,39 @@
 
 
       /* css */
+
+
+      /* Navbar */
+
+.Navbar{
+  background-color: indigo;
+  color: gold;
+}      
+
+      /* Home */
+.home-main{
+  width: 100%;
+  color: gold;
+  background: linear-gradient(
+    to right,
+    indigo 0%,
+    indigo 50%,
+    indigo 50%,
+    indigo 100%
+  );
+}
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 89.8vh;
+}
+     
+
+      /* SignUp */
+
+
 .signUp-h{
   text-align: center;
   color: indigo;
@@ -87,6 +120,7 @@ border-radius: 8px;
 .contactUs-SecTwo h3{
 color: indigo;
 padding: 40px;
+margin-left: 2.2rem;
 padding-bottom: 0px;
 }
 .contactSecTwoInputs{
@@ -120,4 +154,34 @@ padding-bottom: 0px;
   margin-bottom: 20px;
   padding: 8px;
   border-radius: 8px;
+}
+
+
+    /* About  */
+
+ .aboutSections{
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  width: 700px;
+  margin: auto;  
+  
+ } 
+.aboutSecOne{
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}  
+
+.about{
+  margin: 30px;
+}
+.aboutDesignationText{
+  margin-left: 40px;
+  margin-top:-1.5rem;
+}
+.aboutSecTwo{
+  display: flex;
+  justify-content: center;
+}
+.aboutSecTwo ul, li{
+  margin: 10px;
 }

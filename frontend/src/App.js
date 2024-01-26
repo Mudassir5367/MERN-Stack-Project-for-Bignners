@@ -12,6 +12,7 @@ import ContactUs from './components/ContactUs';
 import AboutUs from './components/AboutUs';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
     <Navbar/>
       <div>
         <Routes>
-          <Route path='/' element = {<div>Home</div>}/> 
+          <Route path='/' element = {<Home/>}/> 
           <Route path='/contact' element = {<ContactUs/>}/>
           <Route path='/about' element = {<AboutUs/>}/>
           <Route path='/login' element = {<Login/>}/>
