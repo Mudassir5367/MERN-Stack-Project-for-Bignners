@@ -185,3 +185,33 @@ padding-bottom: 0px;
 .aboutSecTwo ul, li{
   margin: 10px;
 }
+
+.aboutSecThree{
+  display: flex;
+  justify-content: center;
+}
+.aboutThreeSec{
+  margin: 3rem;
+}
+.aboutThreeSec a {
+  text-decoration: none;
+  color: black;
+}
+.aboutText{
+  margin-top: 1.5rem;
+}
+
+
+    /* 404 page */
+.page404{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12rem;
+}    
+.navLinkPage404{
+  /* text-decoration: none; */
+  display: flex;
+  justify-content: center;
+  color: black;
+}    

@@ -13,6 +13,7 @@ import AboutUs from './components/AboutUs';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
+import Page404 from './components/Page404';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path='/about' element = {<AboutUs/>}/>
           <Route path='/login' element = {<Login/>}/>
           <Route path='/signup' element = {<Signup/>}/>
+          <Route path='/page' element = {<Page404/>}/>
+
         </Routes>
       </div>
     </Router>
