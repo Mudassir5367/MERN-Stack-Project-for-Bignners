@@ -27,6 +27,7 @@ function App() {
           <Route path='/login' element = {<Login/>}/>
           <Route path='/signup' element = {<Signup/>}/>
           <Route path='/page' element = {<Page404/>}/>
+          {/* <Route path='*' element={<Page404 />} /> */}
 
         </Routes>
       </div>

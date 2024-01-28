@@ -13,13 +13,13 @@
       /* Home */
 .home-main{
   width: 100%;
-  color: gold;
+  color: indigo;
   background: linear-gradient(
     to right,
-    indigo 0%,
-    indigo 50%,
-    indigo 50%,
-    indigo 100%
+    lightgrey 0%,
+    lightgrey 50%,
+    grey 50%,
+    grey 100%
   );
 }
 .home-page {
@@ -27,7 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 89.8vh;
+  height: 86.8vh;
 }
      
 
@@ -173,6 +173,7 @@ padding-bottom: 0px;
 
 .about{
   margin: 30px;
+  border: none;
 }
 .aboutDesignationText{
   margin-left: 40px;
