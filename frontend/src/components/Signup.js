@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState,  } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name:'', email:'', phone:'', work:'', password:'', cpassword:''
   })
+
+
+  const {name, email, phone, work, password, cpassword} = user;
 
   const handleChange = (e) =>{
     // console.log(e);
@@ -14,12 +18,34 @@ const Signup = () => {
     setUser({...user, [name]:val})
   }
 
- 
+  const handleSubmit = async(e) =>{
+    console.log(e);
+    e.preventDefault()
+    const res = await fetch('/register',{
+      method:'POST',
+      heaaders:{
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+        name, email, phone, work, password, cpassword
+      })
+    });
+    const data = await res.json()
+    console.log(data);
+    if(data){
+      console.log('registration successfull');
+
+      navigate('/login')
+    }else{
+      console.log('Iinvalid ');
+    }
+  }
 
   return (
     <>
       <div className='signUpInputs'>
       <h1 className='signUp-h signIn-h'>SignUp</h1>
+        <form method='POST'>
         <div className='inputSignUp'>
           <input type='text' name='name' placeholder='Enter Name'
             value={user.name}
@@ -57,9 +83,10 @@ const Signup = () => {
           />
         </div>
         <div className='inputSignUp'>
-          <button className='signUpBtn' >Register</button>
+          <button className='signUpBtn' onClick={handleSubmit}>Register</button>
           <Link to={'/login'} className='signUpLink'>I've already an Account</Link>
         </div>
+        </form>
       </div>
       
     </>
