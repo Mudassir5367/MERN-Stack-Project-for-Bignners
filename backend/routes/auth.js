@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 require('../db/connection')
 const User = require('../model/userSchema')
 
+
 router.get('/', (req, res)=>{
     res.send('Hellow')
 })
@@ -15,25 +16,26 @@ router.post('/register', async(req, res)=>{
    const {name, email, phone, work, password, cpassword} = req.body;
    console.log(name);
    if(!name || !email || !phone || !work || !password || !cpassword ){
-    res.json({error:'plz filled the field'})
+   return res.json({error:'plz filled the field'})
    }
 
    try {
-    const existUser = await User.findOne({email:email})
-     if(existUser){
-     res.json({error:'user already exist'})
-     }else if(password !== cpassword){
-        res.json({error:'password are not matching'})
-     }
-     else if (!existUser){
-        const user =  new User({name, email, phone, work, password, cpassword})
-        await user.save()
-            res.json({msg:'user data added in database'})
-     }
-     
-   } catch (error) {
-    console.log(error);
-   }
+    const existUser = await User.findOne({ email: email });
+
+    if (existUser) {
+      return res.json({ error: 'User already exists' });
+    } else if (password !== cpassword) {
+      return res.json({ error: 'Passwords do not match' });
+    } else {
+      const user = new User({ name, email, phone, work, password, cpassword });
+      await user.save();
+      console.log('User data added to the database');
+      return res.json({ msg: 'User data added to the database' });
+    }
+  } catch (error) {
+    console.error('Error during registration:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
   
 
 })

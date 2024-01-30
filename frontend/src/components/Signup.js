@@ -1,45 +1,56 @@
-import React, { useState,  } from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    name:'', email:'', phone:'', work:'', password:'', cpassword:''
-  })
+    name: '',
+    email: '',
+    phone: '',
+    work: '',
+    password: '',
+    cpassword: '',
+  });
 
-
-  const {name, email, phone, work, password, cpassword} = user;
-
-  const handleChange = (e) =>{
-    // console.log(e);
+  const handleChange = (e) => {
     const name = e.target.name;
     const val = e.target.value;
-    console.log(name,val);
-    setUser({...user, [name]:val})
-  }
+    setUser({ ...user, [name]: val });
+  };
 
-  const handleSubmit = async(e) =>{
-    console.log(e);
-    e.preventDefault()
-    const res = await fetch('/register',{
-      method:'POST',
-      heaaders:{
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({
-        name, email, phone, work, password, cpassword
-      })
-    });
-    const data = await res.json()
-    console.log(data);
-    if(data){
-      console.log('registration successfull');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      navigate('/login')
-    }else{
-      console.log('Iinvalid ');
+    const { name, email, phone, work, password, cpassword } = user;
+
+    try {
+      const res = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          work,
+          password,
+          cpassword,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        console.log('Registration successful');
+        navigate('/login');
+      } else {
+        console.error('Registration failed:', data.error);
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
     }
-  }
+  }; 
 
   return (
     <>
