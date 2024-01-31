@@ -42,33 +42,33 @@ router.post('/register', async(req, res)=>{
 
 ///////////// login /////////////
 
-router.post('/signin', async(req, res)=>{
-    // console.log(req.body);
-    // res.json({msg:'login success'})
-    const {email, password} = req.body;
+router.post('/signin', async (req, res) => {
+  const { email, password } = req.body;
 
-    if(!email || !password){
-        res.json({error:'please filld the data'})
-    }
-    const loginUser = await User.findOne({email:email})
-    console.log('loginUser :',loginUser);
-    if(loginUser){
-        const isMatch = await bcrypt.compare(password, loginUser.password)
-        // token 
-        const token = await loginUser.generateAuthToken();
-        // token with cookie
-        res.cookie('jwtoken', token, {
-            espires:new Date(Date.now() + 25892000000),
-            httpOnly:true
-        })
-        console.log(token);
-        if(isMatch){
-            res.json({msg:'signin successful'})            
-        }else{
-            res.json({error:'Invalid Credentials'})
-        }
-    }else{
-        res.json({error:'Invalid Credentials'})
-    }
-})
+  if (!email || !password) {
+      return res.status(400).json({ error: 'Please fill all the fields' });
+  }
+
+  try {
+      const loginUser = await User.findOne({ email: email });
+
+      if (loginUser) {
+          const isMatch = await bcrypt.compare(password, loginUser.password);
+
+          if (isMatch) {
+              const token = await loginUser.generateAuthToken();
+              res.status(200).json({ token });
+              console.log('signin successful');
+          } else {
+              res.status(400).json({ error: 'Invalid Credentials' });
+          }
+      } else {
+          res.status(400).json({ error: 'Invalid Credentials' });
+      }
+  } catch (error) {
+      console.error('Error during signin:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 module.exports = router;
