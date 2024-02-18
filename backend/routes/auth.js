@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('../db/connection')
 const User = require('../model/userSchema')
+const autehntication = require('../middleware/authentication')
 
 
 router.get('/', (req, res)=>{
@@ -70,5 +71,11 @@ router.post('/signin', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+//////// About Page ///////////
+router.get('/about', autehntication, (req, res)=>{
+  console.log('Hello my About ');
+})
 
 module.exports = router;
